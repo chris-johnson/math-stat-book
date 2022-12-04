@@ -1,0 +1,322 @@
+
+<!-- add elsewhere:
+
+Normalization vs. standardization:
+
+* normalization: rescale values from 0 to 1
+* standardization: transform values so that the mean is 0 and the standard deviation is 1.
+
+-->
+
+# Distributions
+
+* `d` is $\Pr(X = x)$ (PDF)
+* `p` is $\Pr(X \leq x)$ (CDF)
+* `q` is quantile function (similar to PDF)
+* `r` is random sample
+
+# Identification
+
+Quantile-Quantile (Q-Q) plots can be formed for any distribution
+
+Quantiles are lines that divide the data into equally-sized groups
+Describes the amount of data to the left (or below) it
+
+* Calculate the quantiles for each $n$ observations in the sample ($0$&ndash;$100$)
+* Divide the distribution into $n$ equally-probable parts ($-\inf$&ndash;$\inf$)
+* Plot the data quantile against the distribution quantile
+* If the points adhere to $y = ax + b$ (depends on the distribution), then this provides evidence the data follow the distribution
+
+## Families
+
+# Distribution relationships
+
+## Table of relationships
+
+Distribution | Relatives | Notes
+-|-|-
+Poisson | Binomial | Can be used to approximate the Binomial
+Negative Binomial | Pascal | Special case of Pascal
+
+## Family
+
+* Log-normal
+* Normal
+* t
+
+## Family 
+
+Pascal
+Negative binomial
+
+## Family
+
+Beta
+Gamma
+Exponential
+
+## Identification
+
+<!-- partition this section, and move into discrete.Rmd or continuous.Rmd under the appropriate section -->
+
+Keywords can be used to nail down the distribution.
+
+Keyword | Distribution | Notes
+-|-|-
+Non-conforming items | Hypergeometric |
+Successes, failures | Binomial | Can be approximated by the Poisson
+Per unit | Poisson |
+| Pascal |
+Time-to-failure | Exponential |
+
+
+## Discrete distributions
+
+Random variables are vectors.
+
+<!--
+
+For reference
+
+The probability density function (PDF) $f(x)$ is any function that produces a curve with the following two properties $\forall x$:
+
+* $f(x) \geq 0$
+* $\int_a^b f(x) \mathrm{d}x = 1$
+
+The curve is called the density curve, and the area is referred to as the density. Since the total area under the density curve (or equivalently, the area of the density) is equal to 1, the values can be interpreted as probabilities.
+
+The density curve is said to be supported over an interval. Support describes the interval. Discrete distributions either have finite or infinite support. Continuous distributions either have bounded ($\left[a, b\right]$), semi-infinite ($\left[0, +\infty\right)$), or infinite support ($\left(-\infty, +\infty\right)$).
+
+The cumulative distribution function (cdf) is the sum of the area under the density curve from the minimum supported value to a value of interest, giving $\mathrm{Pr}(X \leq x)$, where $X$ is the random variable (RV) and $x$ is the value of interest the RV can take on. It follows that
+
+-->
+
+The probability mass function (PMF) $p(x)$ is any function that 
+
+### Poisson
+
+Rate
+
+The Poisson distribution is appropriate when calculating rate, the number of events per unit. Note that unit can be spatial (number of purse snatchings per 10 quadrats) or temporal (number of phone calls per 22 minutes). <!-- Do not change these examples. They're not purse snatchings per minute or phone calls per minute for a reason (though those are valid). -->
+
+As $lambda \to \infty$, the Poisson distribution approximates the normal distribution
+
+### Binomial
+
+Binomial distribution has two parameters:
+
+* number of trials
+* probability of success
+
+Observation refers to observing one or more trials. Multiple observations means observing one or more trials multiple times. Example: Your daredevil cat goes over Niagara Falls in a barrel, and either survives or dies. (Cats have nine lives.)
+
+One observation of three trials means you go over Niagara Falls three times. Each time, the outcome is recorded: survive is recorded as success; death is recorded as failure.
+
+Two observations of three trials means you simply repeat this experiment twice, resulting in two datasets.
+
+The trials are independent: for all trials, the outcome of any single trial doesn't influence the outcome of the other trials. (Feelings don't matter to the barrel or the waterfall.)
+
+Situations that are not naturally binomial may be able to be dichotomized, assuming the trials are independent.
+
+Example: A combination lock has five dials, and each dial has four letters: A, B, C, and D. For the lock to open, the dial must be turned to the correct letter. The dial can be either correctly set or incorrectly set, which corresponds to success or failure respectively. Additionally, since the outcome of setting of one dial doesn't influence the outcome of setting any of the other dials, the dials can be treated as trials, and those trials can be assumed independent.
+
+If a crook has one chance to guess the correct combination, the probability that the crook sets two of the five dials to the correct position is `r dbinom(x = 2, size = 5, prob = 0.25)`.
+
+The probability of success is 0.25. This is because without any knowledge of the correct position of the dial, each of the four letters are equally likely, hence $0.25 = \frac{1}{4}$.
+
+In R,
+
+    dbinom(x = 2, size = 5, prob = 0.25)
+
+`n` is the number of observations.
+
+Note, `sum(dbinom(x = 0:5, size = 5, prob = 0.5))` is 1.
+
+The probability that the crook gets less than five correct is `r pbinom(q = 4, size = 5, prob = 0.25)`, which is equivalent to
+
+    sum(
+      dbinom(
+        x = 0:4, 
+        size = 5, 
+        prob = 0.25
+      )
+    )
+
+or
+
+    pbinom(q = 4, size = 5, prob = 0.25)
+
+`pbinom()` gives $\mathrm{Pr}(X \leq x)$. `pbinom()` uses the cumulative 
+
+
+Bin(trials, probability of success)
+
+### Poisson
+
+Discrete
+
+bounds: $[0, \infty)$
+
+$\lambda \in \mathbb{R}$
+
+Describes number of events occurring in a fixed time interval or region of opportunity
+
+$\lambda$ is the expected number of events.
+
+Assumptions:
+
+* rate is constant
+* events are independent (no events influence other events)
+
+Probability mass function:
+
+$\Pr(X = x) = \frac{e^{-\lambda} \lambda^x}{x!}$
+
+Cumulative distribution function:
+
+$\Pr(X \leq x) = \frac{\Gamma(x + 1\, \lambda)}{\lfloor x! \rfloor}$
+
+$\mathbb{E}(X) = \lambda = \mathbb{V}(X)$
+
+### Hypergeometric
+
+* $N$ total items
+* $D$ non-conforming items
+* Wish to sample $n$ items
+
+$$
+p(x) = \dfrac{\binom{D}{x}\binom{N - D}{n - x}}{\binom{N}{n}}
+$$
+
+
+
+Probability of $x \in \{ 0, 1, 2, \ldots, \min(n, D) \}$ non-conforming samples:
+
+$$\Pr(X \leq x) = p(0) + \ldots + p(x)$$
+
+### Binomial
+
+* Independent Bernoulli trials (success or failure)
+* Quality engineering
+* Can be used to approximate the hypergeometric
+* $p$ is the fraction of non-conforming items
+* $n$ is the sample size
+* $x$ is the number of successes
+  * Success can be a defect, e.g. a non-conforming item
+  * Want to know number of non-conforming items in the sample
+
+$$p(x) = {n \choose x} p^{x} (1 - p)^{n - x}$$
+
+$\Pr(\hat{p} \leq a) = \Pr \left( \dfrac{x}{n} \leq a \right) = \Pr(x \leq na)$
+
+* Sample size is fixed
+* Count the number of successes
+
+_Note: Time to review changing the limits of summation and integration!_
+
+### Poisson
+
+* Phenomenon occurring on a per-unit basis
+  * defect
+  * per unit area, length, time, etc.
+* Can be used to approximate the binomial
+
+$$p(x) = \dfrac{e^{-\lambda} \lambda^{x}}{x!}$$
+
+### Pascal
+
+* Bernoulli trials
+* $p$ is the probability of success
+* $r$ is the number of successes
+* $x$ is the trial
+
+This distribution gives the probability that the $r$th success occurs on trial $x$, based on a probability of success:
+
+$$p(x) = {{x - 1} \choose {r - 1}} p^{r} (1 - p)^{x - r}$$
+
+#### Negative binomial
+
+* Special case of the Pascal
+* Fix the number of successes
+* Used to determine the sample size needed to observe $x$ successes
+* $r \in \mathbb{R}$ and $r > 0$
+
+#### Geometric
+
+* Special case of the Pascal, when $r = 1$.
+
+## Continuous distributions
+
+Random variables are intervals.
+
+The probability density function (PDF) $f(x)$ is any function that produces a curve with the following two properties $\forall x$:
+
+* $f(x) \geq 0$
+* $\int_a^b f(x) \mathrm{d}x = 1$
+
+The curve is called the density curve, and the area is referred to as the density. Since the total area under the density curve (or equivalently, the area of the density) is equal to 1, the values can be interpreted as probabilities.
+
+The density curve is said to be supported over an interval. Support describes the interval. Discrete distributions either have finite or infinite support. Continuous distributions either have bounded ($\left[a, b\right]$), semi-infinite ($\left[0, +\infty\right)$), or infinite support ($\left(-\infty, +\infty\right)$).
+
+The cumulative distribution function (cdf) is the sum of the area under the density curve from the minimum supported value to a value of interest, giving $\mathrm{Pr}(X \leq x)$, where $X$ is the random variable (RV) and $x$ is the value of interest the RV can take on. It follows that
+
+$$
+\mathrm{Pr}(X \leq x) + \mathrm{Pr}(X > x) = 1
+$$
+
+and by arithmetic
+
+$$
+\mathrm{Pr}(X > x) = 1 - \mathrm{Pr}(X \leq x)
+$$
+
+$\mathrm{Pr}(a \leq x \leq b)$ is calculated using the cdf:
+
+$$
+\mathrm{Pr}(a \leq x \leq b) = \mathrm{Pr}(X \leq b) - \mathrm{Pr}(X \leq a)
+$$
+
+For continuous distributions, $\mathrm{Pr}(X = x) = 0$. Let $a = b$:
+
+$$
+\begin{aligned}
+\mathrm{Pr}(a \leq x \leq b) &= \mathrm{Pr}(X \leq b) - \mathrm{Pr}(X \leq a) \\
+&= \mathrm{Pr}(X \leq b) - \mathrm{Pr}(X \leq b) \\
+&= 0
+\end{aligned}
+$$
+
+### Normal
+
+* Can be used to approximate the binomial
+* 
+
+$$f(x) = \dfrac{1}{\sigma \sqrt{2 \pi}} e^{-\dfrac{1}{2} \left( \dfrac{x - \mu}{\sigma} \right)^{2}}$$
+
+### Lognormal
+
+### Exponential
+
+* Used in reliability engineering (time to failure)
+  * $\lambda$ is called the failure rate
+  * $\dfrac{1}{\lambda^{2}}$ is called the mean time to failure
+
+$$f(x) = \lambda e^{-\lambda x}$$
+
+_See note about relation to the Poisson distribution on p. 70 of Montgomery._
+
+### Gamma
+
+* Becomes the exponential distribution when $r = 1$
+* Parameters shape and scale the distribution
+
+$$f(x) = \dfrac{\lambda}{\Gamma(r)} (\lambda x)^{r - 1} e^{-\lambda x}$$
+
+### Weibull
+
+* Used in reliability engineering
+  * Time to failure
+* Reduces to the exponential distribution when $\beta = 1$
+
+$$f(x) = \dfrac{\beta}{\theta} \left( \dfrac{x}{\theta} \right)^{\beta - 1} \exp \left[ - \left( \dfrac{x}{\theta} \right)^{\beta} \right]$$
+

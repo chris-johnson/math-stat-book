@@ -1,0 +1,27 @@
+project:
+  type: book
+
+book:
+  title: "Mathematical statistics"
+  author: "Chris Johnson"
+  date: "12/4/2022"
+  chapters:
+    - index.qmd
+    - distributions.qmd
+    - fundamentals.qmd
+    - inference.qmd
+    - regression.qmd
+    - sampling.qmd
+    - theorems.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

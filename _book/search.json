@@ -1,0 +1,198 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Mathematical statistics",
+    "section": "",
+    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books."
+  },
+  {
+    "objectID": "distributions.html",
+    "href": "distributions.html",
+    "title": "1  Distributions",
+    "section": "",
+    "text": "2 Identification\nQuantile-Quantile (Q-Q) plots can be formed for any distribution\nQuantiles are lines that divide the data into equally-sized groups Describes the amount of data to the left (or below) it"
+  },
+  {
+    "objectID": "distributions.html#families",
+    "href": "distributions.html#families",
+    "title": "1  Distributions",
+    "section": "2.1 Families",
+    "text": "2.1 Families"
+  },
+  {
+    "objectID": "distributions.html#table-of-relationships",
+    "href": "distributions.html#table-of-relationships",
+    "title": "1  Distributions",
+    "section": "3.1 Table of relationships",
+    "text": "3.1 Table of relationships\n\n\n\nDistribution\nRelatives\nNotes\n\n\n\n\nPoisson\nBinomial\nCan be used to approximate the Binomial\n\n\nNegative Binomial\nPascal\nSpecial case of Pascal"
+  },
+  {
+    "objectID": "distributions.html#family",
+    "href": "distributions.html#family",
+    "title": "1  Distributions",
+    "section": "3.2 Family",
+    "text": "3.2 Family\n\nLog-normal\nNormal\nt"
+  },
+  {
+    "objectID": "distributions.html#family-1",
+    "href": "distributions.html#family-1",
+    "title": "1  Distributions",
+    "section": "3.3 Family",
+    "text": "3.3 Family\nPascal Negative binomial"
+  },
+  {
+    "objectID": "distributions.html#family-2",
+    "href": "distributions.html#family-2",
+    "title": "1  Distributions",
+    "section": "3.4 Family",
+    "text": "3.4 Family\nBeta Gamma Exponential"
+  },
+  {
+    "objectID": "distributions.html#identification-1",
+    "href": "distributions.html#identification-1",
+    "title": "1  Distributions",
+    "section": "3.5 Identification",
+    "text": "3.5 Identification\n\nKeywords can be used to nail down the distribution.\n\n\n\nKeyword\nDistribution\nNotes\n\n\n\n\nNon-conforming items\nHypergeometric\n\n\n\nSuccesses, failures\nBinomial\nCan be approximated by the Poisson\n\n\nPer unit\nPoisson\n\n\n\nPascal\n\n\n\n\nTime-to-failure\nExponential"
+  },
+  {
+    "objectID": "distributions.html#discrete-distributions",
+    "href": "distributions.html#discrete-distributions",
+    "title": "1  Distributions",
+    "section": "3.6 Discrete distributions",
+    "text": "3.6 Discrete distributions\nRandom variables are vectors.\n\nThe probability mass function (PMF) \\(p(x)\\) is any function that\n\n3.6.1 Poisson\nRate\nThe Poisson distribution is appropriate when calculating rate, the number of events per unit. Note that unit can be spatial (number of purse snatchings per 10 quadrats) or temporal (number of phone calls per 22 minutes). \nAs \\(lambda \\to \\infty\\), the Poisson distribution approximates the normal distribution\n\n\n3.6.2 Binomial\nBinomial distribution has two parameters:\n\nnumber of trials\nprobability of success\n\nObservation refers to observing one or more trials. Multiple observations means observing one or more trials multiple times. Example: Your daredevil cat goes over Niagara Falls in a barrel, and either survives or dies. (Cats have nine lives.)\nOne observation of three trials means you go over Niagara Falls three times. Each time, the outcome is recorded: survive is recorded as success; death is recorded as failure.\nTwo observations of three trials means you simply repeat this experiment twice, resulting in two datasets.\nThe trials are independent: for all trials, the outcome of any single trial doesn’t influence the outcome of the other trials. (Feelings don’t matter to the barrel or the waterfall.)\nSituations that are not naturally binomial may be able to be dichotomized, assuming the trials are independent.\nExample: A combination lock has five dials, and each dial has four letters: A, B, C, and D. For the lock to open, the dial must be turned to the correct letter. The dial can be either correctly set or incorrectly set, which corresponds to success or failure respectively. Additionally, since the outcome of setting of one dial doesn’t influence the outcome of setting any of the other dials, the dials can be treated as trials, and those trials can be assumed independent.\nIf a crook has one chance to guess the correct combination, the probability that the crook sets two of the five dials to the correct position is 0.2636719.\nThe probability of success is 0.25. This is because without any knowledge of the correct position of the dial, each of the four letters are equally likely, hence \\(0.25 = \\frac{1}{4}\\).\nIn R,\ndbinom(x = 2, size = 5, prob = 0.25)\nn is the number of observations.\nNote, sum(dbinom(x = 0:5, size = 5, prob = 0.5)) is 1.\nThe probability that the crook gets less than five correct is 0.9990234, which is equivalent to\nsum(\n  dbinom(\n    x = 0:4, \n    size = 5, \n    prob = 0.25\n  )\n)\nor\npbinom(q = 4, size = 5, prob = 0.25)\npbinom() gives \\(\\mathrm{Pr}(X \\leq x)\\). pbinom() uses the cumulative\nBin(trials, probability of success)\n\n\n3.6.3 Poisson\nDiscrete\nbounds: \\([0, \\infty)\\)\n\\(\\lambda \\in \\mathbb{R}\\)\nDescribes number of events occurring in a fixed time interval or region of opportunity\n\\(\\lambda\\) is the expected number of events.\nAssumptions:\n\nrate is constant\nevents are independent (no events influence other events)\n\nProbability mass function:\n\\(\\Pr(X = x) = \\frac{e^{-\\lambda} \\lambda^x}{x!}\\)\nCumulative distribution function:\n\\(\\Pr(X \\leq x) = \\frac{\\Gamma(x + 1\\, \\lambda)}{\\lfloor x! \\rfloor}\\)\n\\(\\mathbb{E}(X) = \\lambda = \\mathbb{V}(X)\\)\n\n\n3.6.4 Hypergeometric\n\n\\(N\\) total items\n\\(D\\) non-conforming items\nWish to sample \\(n\\) items\n\n\\[\np(x) = \\dfrac{\\binom{D}{x}\\binom{N - D}{n - x}}{\\binom{N}{n}}\n\\]\nProbability of \\(x \\in \\{ 0, 1, 2, \\ldots, \\min(n, D) \\}\\) non-conforming samples:\n\\[\\Pr(X \\leq x) = p(0) + \\ldots + p(x)\\]\n\n\n3.6.5 Binomial\n\nIndependent Bernoulli trials (success or failure)\nQuality engineering\nCan be used to approximate the hypergeometric\n\\(p\\) is the fraction of non-conforming items\n\\(n\\) is the sample size\n\\(x\\) is the number of successes\n\nSuccess can be a defect, e.g. a non-conforming item\nWant to know number of non-conforming items in the sample\n\n\n\\[p(x) = {n \\choose x} p^{x} (1 - p)^{n - x}\\]\n\\(\\Pr(\\hat{p} \\leq a) = \\Pr \\left( \\dfrac{x}{n} \\leq a \\right) = \\Pr(x \\leq na)\\)\n\nSample size is fixed\nCount the number of successes\n\nNote: Time to review changing the limits of summation and integration!\n\n\n3.6.6 Poisson\n\nPhenomenon occurring on a per-unit basis\n\ndefect\nper unit area, length, time, etc.\n\nCan be used to approximate the binomial\n\n\\[p(x) = \\dfrac{e^{-\\lambda} \\lambda^{x}}{x!}\\]\n\n\n3.6.7 Pascal\n\nBernoulli trials\n\\(p\\) is the probability of success\n\\(r\\) is the number of successes\n\\(x\\) is the trial\n\nThis distribution gives the probability that the \\(r\\)th success occurs on trial \\(x\\), based on a probability of success:\n\\[p(x) = {{x - 1} \\choose {r - 1}} p^{r} (1 - p)^{x - r}\\]\n\n3.6.7.1 Negative binomial\n\nSpecial case of the Pascal\nFix the number of successes\nUsed to determine the sample size needed to observe \\(x\\) successes\n\\(r \\in \\mathbb{R}\\) and \\(r > 0\\)\n\n\n\n3.6.7.2 Geometric\n\nSpecial case of the Pascal, when \\(r = 1\\)."
+  },
+  {
+    "objectID": "distributions.html#continuous-distributions",
+    "href": "distributions.html#continuous-distributions",
+    "title": "1  Distributions",
+    "section": "3.7 Continuous distributions",
+    "text": "3.7 Continuous distributions\nRandom variables are intervals.\nThe probability density function (PDF) \\(f(x)\\) is any function that produces a curve with the following two properties \\(\\forall x\\):\n\n\\(f(x) \\geq 0\\)\n\\(\\int_a^b f(x) \\mathrm{d}x = 1\\)\n\nThe curve is called the density curve, and the area is referred to as the density. Since the total area under the density curve (or equivalently, the area of the density) is equal to 1, the values can be interpreted as probabilities.\nThe density curve is said to be supported over an interval. Support describes the interval. Discrete distributions either have finite or infinite support. Continuous distributions either have bounded (\\(\\left[a, b\\right]\\)), semi-infinite (\\(\\left[0, +\\infty\\right)\\)), or infinite support (\\(\\left(-\\infty, +\\infty\\right)\\)).\nThe cumulative distribution function (cdf) is the sum of the area under the density curve from the minimum supported value to a value of interest, giving \\(\\mathrm{Pr}(X \\leq x)\\), where \\(X\\) is the random variable (RV) and \\(x\\) is the value of interest the RV can take on. It follows that\n\\[\n\\mathrm{Pr}(X \\leq x) + \\mathrm{Pr}(X > x) = 1\n\\]\nand by arithmetic\n\\[\n\\mathrm{Pr}(X > x) = 1 - \\mathrm{Pr}(X \\leq x)\n\\]\n\\(\\mathrm{Pr}(a \\leq x \\leq b)\\) is calculated using the cdf:\n\\[\n\\mathrm{Pr}(a \\leq x \\leq b) = \\mathrm{Pr}(X \\leq b) - \\mathrm{Pr}(X \\leq a)\n\\]\nFor continuous distributions, \\(\\mathrm{Pr}(X = x) = 0\\). Let \\(a = b\\):\n\\[\n\\begin{aligned}\n\\mathrm{Pr}(a \\leq x \\leq b) &= \\mathrm{Pr}(X \\leq b) - \\mathrm{Pr}(X \\leq a) \\\\\n&= \\mathrm{Pr}(X \\leq b) - \\mathrm{Pr}(X \\leq b) \\\\\n&= 0\n\\end{aligned}\n\\]\n\n3.7.1 Normal\n\nCan be used to approximate the binomial\n\n\n\\[f(x) = \\dfrac{1}{\\sigma \\sqrt{2 \\pi}} e^{-\\dfrac{1}{2} \\left( \\dfrac{x - \\mu}{\\sigma} \\right)^{2}}\\]\n\n\n3.7.2 Lognormal\n\n\n3.7.3 Exponential\n\nUsed in reliability engineering (time to failure)\n\n\\(\\lambda\\) is called the failure rate\n\\(\\dfrac{1}{\\lambda^{2}}\\) is called the mean time to failure\n\n\n\\[f(x) = \\lambda e^{-\\lambda x}\\]\nSee note about relation to the Poisson distribution on p. 70 of Montgomery.\n\n\n3.7.4 Gamma\n\nBecomes the exponential distribution when \\(r = 1\\)\nParameters shape and scale the distribution\n\n\\[f(x) = \\dfrac{\\lambda}{\\Gamma(r)} (\\lambda x)^{r - 1} e^{-\\lambda x}\\]\n\n\n3.7.5 Weibull\n\nUsed in reliability engineering\n\nTime to failure\n\nReduces to the exponential distribution when \\(\\beta = 1\\)\n\n\\[f(x) = \\dfrac{\\beta}{\\theta} \\left( \\dfrac{x}{\\theta} \\right)^{\\beta - 1} \\exp \\left[ - \\left( \\dfrac{x}{\\theta} \\right)^{\\beta} \\right]\\]"
+  },
+  {
+    "objectID": "fundamentals.html#correlation",
+    "href": "fundamentals.html#correlation",
+    "title": "2  Fundamentals",
+    "section": "2.1 Correlation",
+    "text": "2.1 Correlation\ncovariance: direction, not standardized correlation: strength and direction, standardized, function of covariance"
+  },
+  {
+    "objectID": "fundamentals.html#counting",
+    "href": "fundamentals.html#counting",
+    "title": "2  Fundamentals",
+    "section": "2.2 Counting",
+    "text": "2.2 Counting\nSuppose we have three urns. All urns have numbered balls.\nThe first urn can hold two balls. The second urn can hold five balls. The third urn can hold ten balls.\nSuppose we ask someone to choose\n\none ball from the first urn\nthree balls from the second urn\nthree balls from the third urn\n\nHow many outcomes are there?\nThe first urn has two balls, and we’re drawing one:\nThere are \\(2 \\choose 1 = 2\\) outcomes for the first urn.\nThe second urn has five balls, and we’re drawing three:\nThere are \\(5 \\choose 3 = 10\\) outcomes for the second urn.\nThe third urn has ten balls, and we’re drawing three:\nThere are \\(10 \\choose 3 = 120\\) outcomes for the third urn.\nTherefore, the total number of outcomes for choosing seven balls from the three urns, when we must choose one of seven from the first urn, three of seven from the second urn, and three of seven from the third urn is \\(2 \\times 10 \\times 120 = 2400\\)."
+  },
+  {
+    "objectID": "fundamentals.html#calculus",
+    "href": "fundamentals.html#calculus",
+    "title": "2  Fundamentals",
+    "section": "2.3 Calculus",
+    "text": "2.3 Calculus"
+  },
+  {
+    "objectID": "fundamentals.html#linear-algebra",
+    "href": "fundamentals.html#linear-algebra",
+    "title": "2  Fundamentals",
+    "section": "2.4 Linear algebra",
+    "text": "2.4 Linear algebra"
+  },
+  {
+    "objectID": "inference.html#categorical",
+    "href": "inference.html#categorical",
+    "title": "3  Quantitative",
+    "section": "3.1 Categorical",
+    "text": "3.1 Categorical\n\n\n\n\n\n\n\n\nvariables\ncategories\ninference\n\n\n\n\n1\n2\n\\(p\\), \\(\\chi^2\\) goodness of fit\n\n\n1\n3 or more\n\\(\\chi^2\\), goodness of fit\n\n\n2\n2\n$ p_a - p_0$ \\(\\chi^2\\), test for association\n\n\n2\n3 or more\n\\(\\chi^2\\), test for association"
+  },
+  {
+    "objectID": "inference.html#quantitative-and-categorical",
+    "href": "inference.html#quantitative-and-categorical",
+    "title": "3  Quantitative",
+    "section": "3.2 Quantitative and categorical",
+    "text": "3.2 Quantitative and categorical\n\n\n\ncategories\ninference\n\n\n\n\n2\n\\(\\mu_0 - \\mu_a\\), ANOVA\n\n\n3 or more\nANOVA"
+  },
+  {
+    "objectID": "inference.html#regression",
+    "href": "inference.html#regression",
+    "title": "3  Quantitative",
+    "section": "3.3 Regression",
+    "text": "3.3 Regression\n\n\n\nresponse\ninference\n\n\n\n\nquantitative\nregression\n\n\ncategorical\nlogistic regression"
+  },
+  {
+    "objectID": "inference.html#pitfalls",
+    "href": "inference.html#pitfalls",
+    "title": "3  Quantitative",
+    "section": "3.4 Pitfalls",
+    "text": "3.4 Pitfalls\n\n3.4.1 Multiple testing\nA Type-I error occurs when the null hypothesis is rejected when it is actually true. The chance that a Type-I error occurs increases as more hypothesis tests are conducted. \\(100 - 100(1 - \\alpha)\\%\\) of tests will yield statistically significant results by chance.\n\n\n7129 genes\n38 patients\nEach patient has one of two types of leukemia\nEach gene was tested for a difference between two types of leukemia\n\nAssume there are no genetic differences between the leukemias. If \\(\\alpha = 0.01\\), it can be expected that 1% of the 7129 tests (71 or 72) to yield statistically significant results by chance.\nTo avoid this pitfall, divide \\(\\alpha\\) by the number of tests. E.g., since there are 7129 tests, it can be expected that practically no tests will yield statistically significant results by chance. (Technically 0.01 tests.)"
+  },
+  {
+    "objectID": "regression.html",
+    "href": "regression.html",
+    "title": "4  Regression",
+    "section": "",
+    "text": "Extension of the inference chapter.\n\n\n\nDependent variable\nRegression model\n\n\n\n\nContinuous\nLinear\n\n\nBinary\nLogistic\n\n\nMulticategory (nominal)\nMultinomial logit\n\n\nMulticategory (ordinal)\nCumulative logit\n\n\nCount\nPoisson\n\n\n\nIf all explanatory variables are categorical, we model contingency tables.\nH0: Equiprobable model (assume uniform distribution; expected value is inverse of number of categories)\nTest if observed is different than expected.\nGoodness of fit statistics for Poisson regression.\nPearson \\(\\chi^2\\) test Deviance or log-likelihood ratio test for Poisson\n\\(\\chi^2 = \\sum_{i}^{n}\\left[\\frac{(O_i - E_i)}{sqrt(E_i)}\\right]^2\\)\n\\(L^2 = 2 \\sum_{i}^{n} O_i \\log\\left(\\frac{O_i}{E_i}\\right)\\)\nBoth should follow \\(\\chi^2\\) with d.f. = number of cells - number of model parameters\nBoth \\(\\chi^2\\) and \\(L^2\\) are asymptoticaly equivalent (as \\(n \\rightarrow \\inf\\), both converge to \\(\\chi^2\\); both rely on large samples)\nDiagnostics\nResidual analysis"
+  },
+  {
+    "objectID": "sampling.html#section",
+    "href": "sampling.html#section",
+    "title": "5  Sampling",
+    "section": "5.1 15",
+    "text": "5.1 15\n\nSimple random sample\n\nEach possible sample of size n has the same probability of being selected.\n\n\nSection 2.4 presents more complex sampling schemes."
+  },
+  {
+    "objectID": "sampling.html#section-1",
+    "href": "sampling.html#section-1",
+    "title": "5  Sampling",
+    "section": "5.2 39",
+    "text": "5.2 39\nNo useful information."
+  },
+  {
+    "objectID": "sampling.html#section-2",
+    "href": "sampling.html#section-2",
+    "title": "5  Sampling",
+    "section": "5.3 124-129",
+    "text": "5.3 124-129\n\nMargin of error\n\n\n\n\nThe margin of error for a confidence interval depends on the standard error of the point estimate. See Exercise 57 in Chapter 4. Complex sampling schemes mentioned are stratification and clustering. Standard errors for the complex sampling schemes are approximated by the formulas for SRSs, either as-is or inflated by a factor\n\nThe margin of error depends directly on the standard error of the sampling distribution of the point estimator.\nThe standard error itself depends on the sample size.\n\nTo determine the sample size we must\n\ndecide on the margin of error desired\nspecify the probability with which the margin of error is achieved\n\nExample 5.6 Sample Size for a Survey on Single-Parent Children\nDetermine \\(n\\) such that a \\(100 \\cdot (1 - \\alpha)\\%\\) confidence interval for \\(\\theta\\) equals \\(\\hat{\\theta} \\pm \\text{MOE}\\).\nSampling distribution :\nIf the sampling distribution of \\(\\hat{\\theta}\\) is approximately normal, \\(\\hat{\\theta}\\) falls within 1.96 standard errors of \\(\\theta\\) with probability \\(0.95\\).\nDetermine \\(\\sigma_{\\hat{\\theta}}\\).\nIf \\(\\theta = \\pi\\), then \\(\\sigma_{\\hat{\\pi}} = \\sqrt{\\frac{\\pi(1 - \\pi)}{n}}\\). If \\(\\theta = \\mu\\), then ? If \\(\\theta = \\tau\\), then ?\nRegardless,\nMargin of error equals test statistic times true standard error.\n\\(\\text{MOE} = ?\\)"
+  },
+  {
+    "objectID": "sampling.html#section-3",
+    "href": "sampling.html#section-3",
+    "title": "5  Sampling",
+    "section": "5.4 235",
+    "text": "5.4 235"
+  },
+  {
+    "objectID": "sampling.html#section-4",
+    "href": "sampling.html#section-4",
+    "title": "5  Sampling",
+    "section": "5.5 114",
+    "text": "5.5 114"
+  },
+  {
+    "objectID": "sampling.html#section-5",
+    "href": "sampling.html#section-5",
+    "title": "5  Sampling",
+    "section": "5.6 133",
+    "text": "5.6 133\n\n\n\n\n\n\n\n\n\n\n\nSampling scheme\nIn general\n\n\n\n\nSimple\nUse this tutorial\n\n\nStratified\nNeed less, due to less variability in subpopulations than the population\n\n\nCluster\nNeed more\n\n\nMultistage\nNeed more\n\n\n\nSample size depends on\n\nmargin of error (precision)\nprobability the confidence interval will contain the parameter (confidence)\nvariability in the population\ncomplexity of analysis \nresources (time, money, etc.)\n\nWith probability \\(100 \\cdot (1 - \\alpha)\\%\\), the sample size needed to estimate  correctly within  .\nIf normal,\n\n\n\nk standard deviations\nProbability\n\n\n\n\n1\n0.680\n\n\n2\n0.950\n\n\n3\n0.999\n\n\n\nPoint estimate Interval estimate\nIf you need to guess \\(\\mathrm{Var}{\\theta}\\), use the fact that the range is \\(2 \\cdot k \\mathrm{Var}{\\theta}\\), then\n\nestablish a reasonable range\nsubstitute the range for \\(\\sqrt{\\mathrm{Var}{\\theta}}\\) in \\(2 \\cdot k \\sqrt{\\mathrm{Var}{\\theta}}\\)\nsolve for \\(\\mathrm{Var}{\\theta}\\)\n      | $H_0$ false                            | $H_0$ true\n————-|—————————————-|————————————— Reject \\(H_0\\) | Power (\\(1 - \\beta\\)) | Type I error with probability \\(\\alpha\\) FTR \\(H_0\\) | Type II error with probability \\(\\beta\\) |\n\nFor two-tailed situations, use \\(\\frac{\\alpha}{2}\\) when finding the \\(z\\)-score.\n\\(n = \\sqrt{\\mathrm{Var}{\\theta}} \\cdot \\left(\\frac{z}{MOE}\\right)^2\\)"
+  },
+  {
+    "objectID": "sampling.html#what-to-do-when-there-is-no-way-around-a-small-sample-size",
+    "href": "sampling.html#what-to-do-when-there-is-no-way-around-a-small-sample-size",
+    "title": "5  Sampling",
+    "section": "5.7 What to do when there is no way around a small sample size",
+    "text": "5.7 What to do when there is no way around a small sample size\nUse a \\(t\\) method Look for extreme outliers great departures from normal population assumption (tests usually use the mean, and assume the location of the mean is the center of the distribution; if the distribution is skewed, the mean is not the center.)"
+  },
+  {
+    "objectID": "theorems.html#the-central-limit-theorem",
+    "href": "theorems.html#the-central-limit-theorem",
+    "title": "6  Theorems",
+    "section": "6.1 The Central Limit Theorem",
+    "text": "6.1 The Central Limit Theorem\n\\(\\mathrm{SE}\\) for sample proportion: \\(\\mathrm{SE} = \\sqrt{\\frac{p(1 - p)}{n}}\\). (As \\(n\\) increases, \\(\\frac{p(1 - p)}{n}\\) decreases.) See derivation of formula. \\(\\mathrm{SE}\\) can be calculated by simulation, or using the formula. To simulate, randomly sample \\(n\\) times from a binomial distribution with a given \\(p\\), calculate \\(\\hat{p}\\), and repeat many times (e.g. 1000).\nCh. 6: tests for proportions that deal with a single category of a categorical variable. for categorical data, the parameter of interest is typically the population proportion. Ch. 7: tests involving two or more categories using \\(\\chi^2\\) tests. frequency counts for the different categories of one or more categorical variables."
+  },
+  {
+    "objectID": "theorems.html#standard-error",
+    "href": "theorems.html#standard-error",
+    "title": "6  Theorems",
+    "section": "6.2 Standard error",
+    "text": "6.2 Standard error\nMoral of the story: With enough information, simulation is not needed. Statistical theory provides the actual SE.\nSampling distribution of \\(p\\) is approximately normal if\n\n\\(0.25 \\leq p \\leq < 0.75\\) (at \\(0\\), or \\(1\\), the tail is truncated)\nthe sample size is large enough to keep the tail bound between 0 and 1, generally if \\(np \\geq 10\\) and \\(n(1 - p) \\geq 10\\)\n\nThe mean of the \\(\\hat{p}\\) is equal to the \\(p\\), the probability of success.\n\\(\\hat{p} \\sim N\\left(p, sqrt(\\frac{p(1 - p)}{n})\\right)\\) if\n\n\\(0.25 \\leq p \\leq < 0.75\\)\n\\(np \\geq 10\\)\n\\(n(1 - p) \\geq 10\\)\n\nTherefore, if we only take a single sample, it is shown that given these conditions, this single sample comes from a distribution defined by \\(\\hat{p} \\sim N\\left(p, sqrt(\\frac{p(1 - p)}{n})\\right)\\). This is useful, because with this one single sample, we can calculate \\(\\mathrm{SE}\\) directly as \\(\\sqrt{\\frac{p(1 - p)}{n}}\\), and substitute\nIf the conditions above do not hold, then a randomization test must be used. \nRandomization distributions\nGenerate randomization samples that are consistent with the null hypothesis\nWhen to use for the following?\n\nmean\ndifference in means\ndifference in proportions\netc."
+  }
+]

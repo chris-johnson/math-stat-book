@@ -1,0 +1,257 @@
+
+# Sampling
+
+Squid
+
+Experiment: Ensure flow rate is $525 \pm 25$ mL for some number of trials.
+
+Task, stated in many ways: 
+
+Range: [500, 550]
+
+Calculate the number of trials needed to ensure the flow rate $525 \pm 25$
+
+Sample size, 15, 39
+  choice of, 124-129
+  effect on chi-squared statistic, 235
+  effect on width of confidence interval, 114, 133
+
+## 15
+
+Simple random sample
+  : Each possible sample of size n has the same probability of being selected.
+
+Section 2.4 presents more complex sampling schemes.
+
+## 39
+
+No useful information.
+
+## 124-129
+
+Margin of error
+  : 
+
+The margin of error for a confidence interval depends on the standard error of the point estimate.
+See Exercise 57 in Chapter 4.
+Complex sampling schemes mentioned are stratification and clustering.
+Standard errors for the complex sampling schemes are approximated by the formulas for SRSs, either as-is or inflated by a factor
+
+* The margin of error depends directly on the standard error of the sampling distribution of the point estimator.
+* The standard error itself depends on the sample size.
+
+**To determine the sample size** we must 
+
+* decide on the margin of error desired
+* specify the probability with which the margin of error is achieved
+
+Example 5.6 Sample Size for a Survey on Single-Parent Children
+
+Determine $n$ such that a $100 \cdot (1 - \alpha)\%$ confidence interval for $\theta$ equals $\hat{\theta} \pm \text{MOE}$.
+
+Sampling distribution
+  :
+
+If the sampling distribution of $\hat{\theta}$ is approximately normal, $\hat{\theta}$ falls within 1.96 standard errors of $\theta$ with probability $0.95$.
+
+Determine $\sigma_{\hat{\theta}}$.
+
+If $\theta = \pi$, then $\sigma_{\hat{\pi}} = \sqrt{\frac{\pi(1 - \pi)}{n}}$.
+If $\theta = \mu$, then ?
+If $\theta = \tau$, then ?
+
+Regardless,
+
+Margin of error equals test statistic times true standard error.
+
+$\text{MOE} = ?$
+
+
+
+## 235
+
+
+## 114
+
+
+## 133
+
+
+
+<!-- Corrections to make
+
+* Fix new LaTeX command to take a parameter
+* Replace most instances of $\Var{}$ with $\mathrm{se}$ (maybe give the latter its own definition).
+* Replace $z$ with "score" ($z$ is used for proportions, $t$ is used for means; the former isn't a function of variance, but the latter is.)
+
+-->
+
+<!-- Definitions
+
+Margin of error
+  : score \times se
+
+Confidence interval
+  : Point estimate \pm margin of error
+
+Confidence level
+  : Probability the method yields an interval containing the parameter
+
+Estimator
+  : A statistic for estimating a parameter.
+
+Estimate
+  : The value an estimator returns after processing a sample.
+
+Sampling distribution
+  : The result of testing an estimator by simulating samples, feeding the data to the estimator, and forming a distribution of the estimates. The sampling distribution is indicative of how the estimator peforms from sample to sample. A relative frequency table can be constructed which serves as the probability distribution for the estimates the estimator generates. Can also be derived via combinations (binomial coefficients) and multiplication rule. For the sampling distribution of the estimator of the mean, the mean of the sampling distribution equals the population mean. If the standard error can be calculated, a simulation is not necessary to assess how the estimator varies from sample to sample. The standard deviation of the sampling distribution is the standard error.
+
+## Some hierarchy
+
+* Statistical method
+  * Estimator
+
+<!-- I was thinking of the hierarchy of the GIS terms (e.g. datum, GCS, PCS, etc.)
+
+## Combination vs. permutation
+
+Combination function is a wrapper around permutation function.
+
+## Types of data
+
+* Categorical
+  * Nominal
+  * Ordinal
+  * Continuous variable that has been discretized
+  * 
+
+### Analytical approaches for these types
+
+Categorical data is summarized with proportions
+
+## How to analyze estimators
+
+Analysis of estimators for the following properties depends on the distribution.
+
+Biasedness
+  : Does the estimator tend to under- or overestimate the parameter on average? To test estimators for biasedness, simulation can be performed. Concepts needed: expectation.
+
+Efficiency
+  : How small is the standard error? Is it smaller than the standard error of alternative estimators? Concepts needed: standard error.
+
+Sampling distribution
+  : What is the approximate sampling distribution?
+
+## Maximum likelihood estimation
+
+Maximum likelihood estimation
+
+Which estimate do I substitute for the population parameter that makes the observed data most likely?
+
+## New section
+
+-->
+
+<!-- Sections not appropriate for this document
+
+## Being skeptical
+
+Be skeptical of the precision and confidence stated in all studies until it is verified none of the following occurred:
+
+Study is carried out poorly
+Data are not obtained for a substantial percentage of the sample
+Subjects lie
+Observations were recorded incorrectly
+
+## Standard deviation vs. standard error
+
+Standard deviation is the square root of the variance of an estimator: $\sqrt{\Var{\theta}}$.
+
+Standard error is the square root of the mean of the variance. The formula is usually shown as $\frac{\sigma}{\sqrt{n}}$, but if rewritten as $\sqrt{\frac{\sigma^2}{n}}$, it is clear that this is the square root of a mean.
+
+The standard deviation describes the population distribution. The standard error describes the sampling distribution.
+
+The standard deviation of the sampling distribution is equal to the standard error.
+
+## Types of distributions
+
+Population distribution
+  : Usually unknown. Notation: N, population size.
+
+Sample data distribution
+  : Observed. 
+
+Sampling distribution
+  :
+
+## Types of estimates
+
+Point estimate
+Interval estimate (confidence, prediction)
+
+## $z$- vs. $t$-distribution
+
+The mean is located at 0 for both, but the latter is used when the population variance is unknown, and thus an estimate of the population variance must be calculated from the sample and used (the sample variance). The latter uses degrees of freedom to increase the spread to account for this fact.
+
+
+
+-->
+
+Sampling scheme | In general
+----------------|-----------
+Simple          | Use this tutorial
+Stratified      | Need less, due to less variability in subpopulations than the population
+Cluster         | Need more
+Multistage      | Need more
+
+Sample size depends on 
+
+1. margin of error (precision)
+2. probability the confidence interval will contain the parameter (confidence)
+3. variability in the population
+4. complexity of analysis <!-- observation-to-variable ratio? -->
+5. resources (time, money, etc.)
+
+\newcommand{\Var}{\mathrm{Var}}
+
+With probability $100 \cdot (1 - \alpha)\%$, the sample size needed to estimate <parameter> correctly within <MOE> <units>.
+
+If normal,
+
+k standard deviations | Probability
+----------------------|------------
+1                     | 0.680
+2                     | 0.950
+3                     | 0.999
+
+Point estimate
+Interval estimate
+
+If you need to guess $\Var{\theta}$, use the fact that the range is $2 \cdot k \Var{\theta}$, then
+
+1. establish a reasonable range
+2. substitute the range for $\sqrt{\Var{\theta}}$ in $2 \cdot k \sqrt{\Var{\theta}}$
+3. solve for $\Var{\theta}$
+
+             | $H_0$ false                            | $H_0$ true
+-------------|----------------------------------------|---------------------------------------
+Reject $H_0$ | Power ($1 - \beta$)                    | Type I error with probability $\alpha$
+FTR $H_0$    | Type II error with probability $\beta$ | 
+
+For two-tailed situations, use $\frac{\alpha}{2}$ when finding the $z$-score.
+
+$n = \sqrt{\Var{\theta}} \cdot \left(\frac{z}{MOE}\right)^2$
+
+## What to do when there is no way around a small sample size
+
+Use a $t$ method
+Look for 
+extreme outliers
+great departures from normal population assumption (tests usually use the mean, and assume the location of the mean is the center of the distribution; if the distribution is skewed, the mean is not the center.)
+
+
+
+
+
+
+

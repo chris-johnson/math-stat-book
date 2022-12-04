@@ -1,0 +1,35 @@
+
+# Regression
+
+Extension of the inference chapter.
+
+Dependent variable      | Regression model
+------------------------|-----------------
+Continuous              | Linear
+Binary                  | Logistic
+Multicategory (nominal) | Multinomial logit 
+Multicategory (ordinal) | Cumulative logit
+Count                   | Poisson
+
+If all explanatory variables are categorical, we model contingency tables.
+
+H~0~: Equiprobable model (assume uniform distribution; expected value is inverse of number of categories)
+
+Test if observed is different than expected.
+
+Goodness of fit statistics for Poisson regression.
+
+Pearson $\chi^2$ test
+Deviance or log-likelihood ratio test for Poisson
+
+$\chi^2 = \sum_{i}^{n}\left[\frac{(O_i - E_i)}{sqrt(E_i)}\right]^2$
+
+$L^2 = 2 \sum_{i}^{n} O_i \log\left(\frac{O_i}{E_i}\right)$
+
+Both should follow $\chi^2$ with d.f. = number of cells - number of model parameters
+
+Both $\chi^2$ and $L^2$ are asymptoticaly equivalent (as $n \rightarrow \inf$, both converge to $\chi^2$; both rely on large samples)
+
+Diagnostics
+
+Residual analysis

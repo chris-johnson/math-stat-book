@@ -1,0 +1,326 @@
+
+http://staff.bath.ac.uk/pssiw/stats2/page2/page14/page14.html
+
+A tiny difference can become statistically significant if the sample size is sufficiently increased.
+
+Effects are usually evidenced by differences
+
+Effect size measures
+  : Measure the size of the association or the size of the difference. Examples include correlation coefficient (r), regression coefficient (R), Cohen's d, $\eta_{P}^{2}$, etc. Is an effect non-trivial, given it is statistically significant? Estimate the amount of variance within an experiment that is explained by the model.
+
+Cohen's d
+  : Difference of two means divided by average of the standard deviations of the means
+
+According to Cohen,
+
+r = |0.1| is small
+r = |0.3| is medium
+r = |0.5| is large
+
+d = 0.2 is small
+d = 0.5 is medium
+d = 0.8 is large
+
+$\eta_{\mathrm{Partial}}^{2}$
+  : Optional when doing ANOVA. The proportion of variance in the dependent variable attributable to the factor in question.
+
+Small effect
+  : Only seen through careful study.
+
+Large effect
+  : "Can be seen with the naked eye." Big and--or consistent.
+
+Pooled
+  : Another word for average?
+
+\begin{align}
+
+d & = \dfrac{M_{\mathrm{group 1}} - M_{\mathrm{group 2}}}{\sqrt{\dfrac{\mathrm{SD}_{\mathrm{group 1}}^{2} + \mathrm{SD}_{\mathrm{group 2}}^{2}}{2}}}
+& = \dfrac{M_{\mathrm{group 1}} - M_{\mathrm{group 2}}}{\mathrm{SD}_{\mathrm{pooled}}}
+
+\end{align}
+
+What is crucial: Describe the effect size using a standardized effect size measure, but relate it back to the original units for context.
+
+Example, verbatim from source:
+
+Examine relationship between time spent studying (factor) and test score (response).
+$r = 0.86$, therefore the relationship is strong.
+$b = \hat{\beta} = 3$ implies for every one hour spent studying the exam score increases by 3 points.
+
+See https://upload.wikimedia.org/wikipedia/commons/1/15/Cohens_d_4panel.svg
+
+## More effect size measures
+
+https://en.wikipedia.org/wiki/Effect_size
+~100 effect size measures are known
+
+### Correlation family (based on variance explained)
+
+Pearson's correlation, r, correlation coefficient
+  : Conveys direction
+
+Coefficient of determination, r^2
+  : Proportion of variance shared by two variables.
+
+$\eta^2$
+  : \frac{\mathrm{SS}_{\mathrm{treatment}}{\mathrm{SS}_\mathrm{total}}
+
+$\omega^2$
+  : 
+
+Cohen's $f^2$
+  :
+
+Cohen's $q$
+  : 
+
+### Difference family (differences in means)
+
+* These are not affected by sample size.
+
+Cohen's $d$
+  : Requires knowledge of s, the pooled standard deviation.
+
+Pooled standard deviation
+  : $s = \sqrt{\dfrac{(n_1 - 1) \cdot s_1^2 + (n_2 - 1) \cdot s_2^2}{n_1 + n_2 - 2}}$
+
+
+
+## Other stuff
+
+Positive effect
+  : Increase in one variable yields an increase in another variable. Decrease in one variable yields a decrease in another variable. 
+
+Negative effect
+  : Increase in one variable yields a decrease in another variable. Decrease in one variable yields an increase in another variable.
+
+Variate
+  : Random variable
+
+Variance
+  : Sum of between-group variance, within-group variance, and covariance. https://www.statisticshowto.datasciencecentral.com/wp-content/uploads/2015/05/ancova.jpg
+
+
+Covariate
+  : https://www.theanalysisfactor.com/confusing-statistical-terms-5-covariate/
+
+
+Trying to describe statistics to the layman is like trying to describe nature in a few words.
+
+## Notes from The Analysis Factor
+
+General linear models
+  : linear regression, ANOVA, MANOVA
+
+Linear mixed models
+
+Generalized linear models
+  : logistic, Poisson, regression
+
+General linear, linear mixed, and generalized linear models all have the form
+
+Response variable Y as a function of one or more predictor variables X and their coefficients B.
+
+Predictor, predictor variable is used in regression contexts.
+Independent variable may imply the variable is independent of other predictors (in the statistical context) or may not (in the mathematical context). It may imply causality if it is manipulated (ANOVA), and if it is manipulated, it is generally categorical. (Subjects are randomly assigned to treatments [or conditions, oy]). It may imply that it is not a control variable. (?) I really like the precision used here.
+
+Explanatory variable implies the variable doesn't predict the response variable, but explains a relationship with the response variable. "Related to" implies relationship. I'm not sure if I can explain the distinction at the moment, since the mechanics seem to be the same.
+
+Control variable may or may not imply having an effect on the response. Usually, I think of it as not having an effect. In the case where it does, then it may be implied that it is not of interest to the research question. (No examples came to mind at the time of writing this.)
+
+Covariate is generally a continuous predictor variable and appears in ANCOVA and regression. TAF suggests this should only be used to describe continuous variables, even though some people use covariate to describe all variables on the RHS. I guess the rationale is ANOVA + covariate = ANCOVA. Covariate in some contexts may be used interchangeably with control variable (either continous or categorical). (Yeesh.)
+
+Confounding variable or confounder may have different meanings whether it appears in an experimental context or observational context. The effect of a confounding variable may be hard to determine due to multicollinearity or it may be one variable controlling another. (Think epistasis: one gene controlling another gene.)
+
+Exposure variable is used in epidemiology, and it is the key (most important?) predictor variable.
+
+Risk factor is another epidemiological term that is continous.
+
+Factor implies categorical predictor, but not necessarily one that produces a causal effect. In ANOVA, factor is typically used. (Factors have levels.) In a regression context, the terms indicator variable, categorical predictor, or dummy variable might be used... This one is very tricky.
+
+Feature is the term for a predictor variable appearing in a machine learning model or predictive model.
+
+Grouping variable is another term for factor. (I would reserve this one for the summarization pipeline context, a la `dplyr::group_by() %>% dplyr::summarize()`). At best, it could be used to convey what a factor is to learners of statistics.
+
+Fixed factors are categorical predictors, and the levels are explicitly chosen because they are important. (Treatments.)
+
+Random factors are categorical predictors, but the levels were randomly chosen. (Subjects, random blocks.)
+
+Blocking variables restrict randomization. (Maybe synonymous with grouping variable?) Can be fixed or random.
+
+Dummy variables are categorical, and usually used in regression and **not** used in ANOVA. The author says that dummy variables can only take on 0 or 1, and that if the variable isn't binary, multiple dummy variables may be needed to encode that information. If you needed to dummy code a variable with three values, you would need two dummy variables (2^2 = [two choices]^number of variables = number of dummy codes = 4. [The fourth wouldn't be used in this example.] A variable with )
+
+2^x      |suitable for                   | Set 
+---------|-------------------------------|----------------------------------
+2^1 = 2  | 1, 2                          | {0, 1}
+2^2 = 4  | 3, 4                          | {(0, 0), (0, 1), (1, 0), (1, 1)}
+2^3 = 8  | 5, 6, 7, 8                    | 
+2^4 = 16 | 9, 10, 11, 12, 13, 14, 15, 16 | 
+etc.
+
+Rule: Always refer to variables with subscripts, e.g x_1, x_2, etc. and not x, y, z.
+Rule: Always refer to coefficients with subscripts, e.g. b_0, b_1 and not a, b.
+Rule: Greek letters for parameters (population) and Latin letters for statistics (sample)
+
+Not mentioned, but is a variable a variable if all values are constant, or should we call this a constant? What about when (n - 1) of the values are the same, but 1 differs?
+
+Indicator variable is a synonym for dummy variable.
+
+What is Cronbach's $\alpha$?
+
+Levels of measurement: nominal, ordinal, interval, ratio.
+
+Hierarchical model, hierarchical linear model are an type of a multilevel model. (What are the other types?) Recycled example: Predict math score using values measured at the student and school levels. Examples of student-level predictors: GPA, grade level, sex. Examples of school-level predictors: enrollment, type of school (public, private, etc.). The measurements of children within a school are not independent. (I understand why, as there is an assumption that the measurements are correlated [think Tobler's first law]. But what if we randomly sampled within a school. That random sample implies the observations are independent. So all along they are dependent, or no?)
+
+Hierarchical regression is simply another (confusing) name for stepwise regression (which seems more appropriate)?
+
+Me babbling in my mind, trying to capture it by typing fast. Thought vomit:
+Optimization in machine learning takes place by running the algorithm over and over, and measuring its predictive performance with a metric (or objective function, say MSE) until that metric is below some threshold (or constraint? Is that where constraint fits in?). The optimization has no proof. (Is that true?) Optimization in statistics has proof. One might have an objective function and constraints, and using some method (such as Lagrange multipliers) can solve that system. In fact, a generalized formula can be derived that provides the optimum values. (In and of itself an algorithm).
+
+In ANCOVA, covariates are always continuous, always a control, and always observed. Recycled example: Conduct an experiment to see how different types of training affect math score. Training is a factor, and levels are math training and physical education training. Training isn't predicting math score; we are interested in seeing if there is a difference between math scores for those who received math training vs. those who received physical education training. (Our presupposition may be that math training yields higher math scores than physical education training, and thus might be our null hypothesis.) Unfortunately, as-is, we haven't accounted for all the training has someone prior to this experiment, and thus need to control for that. Excellent opportunity for a covariate. In fact, we can give the math test before the training, this way people who were already mathematically inclined who will receive physical education training won't add noise. Tada! In the event that you couldn't pretest the students, but could get an answer to the question "Did you take calculus?", it could be used to control. (How would this work? Also, the author states this categorical variable could be labeled a covariate because an alternative term hadn't been created when it was needed, and thus covariate was used instead.)
+
+Make a distinction between variables you're hypothesizing about and variables you are controlling for.
+
+Factor in factor analysis is a latent variable that is expressed through combinations of other variables. Used when a concept is too abstract for a single variable. To fix, you make a scale (an instrument? paper metric?) to capture it, since it can't be measured. (To distinguish, are latent variables truly unmeasureable or simply not measured?) The factor resulting from a factor analysis is able to be used as a single predictor that can replace otherwise many predictor variables. (Benefits? Computational time?)
+
+This author states that fixed and random factors are categorical. Is this always true? I've read elsewhere that random factors are useful when choosing levels from a continuous set...
+
+Factor analysis
+  : Use when a concept exists, but it is hard to directly measure. Additional benefit: reduced computation time since a factor used as a predictive variable replaces otherwise many predictor variables.
+
+Latent variable
+  : An unmeasured variable. (Is a latent variable always unmeasureable, or is it just one that isn't measured? I think I've seen the term "latent variable" used to describe a variable that wasn't measured, as opposed to one that wasn't able to be measured. [Correlation between ice cream purchases and drownings is strong, but the latent variable is temperature, which explains why people would be buying ice cream or swimming].)
+
+Posting link here, in case I didn't above: https://www.theanalysisfactor.com/series-on-confusing-statistical-terms/
+
+Key phrase: Unexplained variation (noise) makes it difficult to see effects. (This is the reason for adding (a) covariate[s] to an ANOVA model (to make it an ANCOVA model).)
+
+Generalized linear models are an extension of general linear models.
+
+General linear models
+  : linear regression, OLS regression, least-squares regression, ordinary regression, ANOVA, ANCOVA. Two defining features: residuals are normally distributed; model parameters (regression coefficients, means, residual variance) are estimated using OLS. r^2, MSE, eta^2 come from OLS methods.
+
+Generalized linear models
+  : Residuals are not normally distributed; the residuals are distributed according to one of the distributions derived from the exponential distribution. (Count variables, categorical variables.) Logistic regression, Poisson regression, probit regression, negative binomial regression. The mean of the response can be made linear using a link function. Model parameters are estimated using maximum likelihood. The difference in programming is that when writing code to fit (for example) a logistic model, a logistic regression function may be a wrapper around the generalized linear model function, setting the link function as logit. (If you used the GLM function, you would have to set the link function yourself.)
+
+## Breakthrough
+
+Effect size measures should be calculated before selecting variables to include in a regression. The Pearson correlation coefficient r doesn't require a model. If $|r|$ is near 1, then the predictor of the pair may be suitable for a model.
+
+Where I left off: https://www.theanalysisfactor.com/specifying-fixed-and-random-factors-in-mixed-models/
+
+Relationship between scatterplot and histogram:
+
+Take a sample
+Scatterplot observed value on x, sample order on y
+Histogram observed value
+Bins are like if we cut the scatterplot into vertical strips, and count the number of points in each strip
+Also, imagine the x-axis is the ground, and gravity is turned off. We turn gravity on, and the points fall to the x-axis, some directly on top of each other, and some very near each other.
+
+log normal means the data will be normal if you take the log of it. The observed data are as if someone applied exp() to a sample from a normal distribution. To fix, apply log().
+
+
+<!--
+
+Common statistics that arise in statistical inference:
+
+* total (How much can I expect?)
+* mean, median (What's typical?)
+* correlation (Are these things related? Is $\rho$ non-zero?)
+
+In addition, we typically want to know if any of the above differ from their respective parameters or statistics calculated from a different sample. This makes sense for all of the above except correlation. The null parameter is either zero (is there any effect?) or some reference value (are we deviating from status quo?)
+
+description | parameter | statistic | strategy
+------------|-----------|-----------|---------------------------------
+correlation | $\rho$    | $r$       | permute one of the variables
+mean        | $\mu$     | $\bar{x}$ | randomly assign values to groups
+median      | $M$       | $m$       |
+mode        | ?         |           |
+
+Samples are evidence. Hypothesis testing assesses how strong the evidence is.
+
+To calculate a p-value, get the proportion of randomization distribution samples that yielded a statistic that is more extreme than the statistic calculated from the original data.
+
+-->
+
+<!-- Questions to answer
+
+How does a bootstrap distribution differ from a randomization distribution.
+
+-->
+
+<!-- Comments
+
+Values inside the confidence interval are referred to as typical and likely; values outside the confidence interval are referred to as extreme and unlikely.
+Hypothesis testing and confidence interval are one in the same.
+
+Verbatim from text:
+
+* A sample statistic lies in the tail of the randomization distribution when the null hypothesized parameter lies in the tail of the bootstrap distribution. Figure 4.32.
+* A sample statistic lies in the typical part of the randomization distribution when the null hypothesized parameter lies in the typical part of the bootstrap distribution (i.e. the confidence interval). Figure 4.33.
+
+In other words, $\alpha = 0.05$ corresponds to a $95\%$ confidence interval.
+
+The confidence interval contains plausible values: these values would not yield a rejection of the null hypothesis in a hypothesis test.
+
+-->
+
+<!-- 
+
+-->
+
+# Randomization distribution
+
+In all cases,
+
+* generate the randomization distribution
+  * be consistent with the null hypothesis (i.e. force the null hypothesis to be true)
+  * use the original data
+  * reflect the way the original data were collected
+* locate the statistic from the original sample in the randomization distribution, and determine if it is extreme
+
+What does this mean? To understand requires understanding the null hypothesis. 
+
+## Mean
+
+1. Shift the original sample (treating the sample as a population) <!-- This comment should go in the bootstrap section -->
+    * calculate the difference between the sample statistic and the null parameter
+    * add or subtract (whichever is appropriate) this different from all values in the original sample
+2. Bootstrap sample (i.e. sample with replacement using a sample size equal to sample size of the original sample)
+    * calculate the sample statistic for the sample
+    * repeat many times (e.g. 10000) to create the randomization sample
+3. Determine how many observations in the randomization distribution are more extreme than the statistic calculated from the original sample
+
+Example of shifting the sample: Suppose the null parameter $\mu_{0} = 98.6$. We sample three values: $(98.63208, 98.66875, 98.28701)$. This yields $\bar{x} = 98.52928$. $\mu_{0} - \bar{x} = 0.07072$, so the _corrected_ sample is $(98.70280, 98.73947, 98.35773)$, for which $\bar{x} = 98.6$.
+
+## Difference in means
+
+## Proportion
+
+## Difference in proportions
+
+Treatments are assigned at random
+Assume null hypothesis is true
+
+$p_0 = \frac{n_0}{N}$, so $n_0 = N p_0$.
+Likewise, $p_a = \frac{n_a}{N}$, so $n_a = N p_a$.
+So $n_0 + n_a = N$.
+
+Basically, discard the labels for the $N$ observations, and randomly relabel
+
+* $n_0$ as treatment and
+* $n_a$ as control.
+
+Calculate and record $p_a - p_0$, then repeat many times.
+
+## Correlation
+
+With correlation, the null parameter $\rho$ is typically assumed to be zero, i.e. no correlation. That means pairs of observations&mdash;as observed&mdash;are meaningless (i.e. nothing is lost by permuting the observations of one of the variables, although a statistically significant correlation might be discovered).
+
+## Terminology
+
+null assumption
+  : can be "no effect", "no difference", or "no relationship"
+
+

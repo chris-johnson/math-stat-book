@@ -1,0 +1,41 @@
+
+# Fundamentals
+
+## Correlation
+
+covariance: direction, not standardized
+correlation: strength and direction, standardized, function of covariance
+
+## Counting
+
+Suppose we have three urns. All urns have numbered balls.
+
+The first urn can hold two balls.
+The second urn can hold five balls.
+The third urn can hold ten balls.
+
+Suppose we ask someone to choose 
+
+* one ball from the first urn
+* three balls from the second urn
+* three balls from the third urn
+
+How many outcomes are there?
+
+The first urn has two balls, and we're drawing one:
+
+There are $2 \choose 1 = 2$ outcomes for the first urn.
+
+The second urn has five balls, and we're drawing three:
+
+There are $5 \choose 3 = 10$ outcomes for the second urn.
+
+The third urn has ten balls, and we're drawing three:
+
+There are $10 \choose 3 = 120$ outcomes for the third urn.
+
+Therefore, the total number of outcomes for choosing seven balls from the three urns, when we must choose one of seven from the first urn, three of seven from the second urn, and three of seven from the third urn is $2 \times 10 \times 120 = 2400$.
+
+## Calculus
+
+## Linear algebra

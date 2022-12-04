@@ -1,0 +1,42 @@
+
+# Theorems
+
+## The Central Limit Theorem
+
+$\mathrm{SE}$ for sample proportion: $\mathrm{SE} = \sqrt{\frac{p(1 - p)}{n}}$. (As $n$ increases, $\frac{p(1 - p)}{n}$ decreases.) See derivation of formula. $\mathrm{SE}$ can be calculated by simulation, or using the formula. To simulate, randomly sample $n$ times from a binomial distribution with a given $p$, calculate $\hat{p}$, and repeat many times (e.g. 1000). 
+
+Ch. 6: tests for proportions that deal with a single category of a categorical variable. for categorical data, the parameter of interest is typically the population proportion.
+Ch. 7: tests involving two or more categories using $\chi^2$ tests. frequency counts for the different categories of one or more categorical variables.
+
+## Standard error
+
+Moral of the story: With enough information, simulation is not needed.
+Statistical theory provides the _actual_ SE.
+
+Sampling distribution of $p$ is approximately normal if
+
+* $0.25 \leq p \leq < 0.75$ (at $0$, or $1$, the tail is truncated)
+* the sample size is large enough to keep the tail bound between 0 and 1, generally if $np \geq 10$ and $n(1 - p) \geq 10$
+
+The mean of the $\hat{p}$ is equal to the $p$, the probability of success.
+
+$\hat{p} \sim N\left(p, sqrt(\frac{p(1 - p)}{n})\right)$ if
+
+* $0.25 \leq p \leq < 0.75$
+* $np \geq 10$
+* $n(1 - p) \geq 10$
+
+Therefore, if we only take a _single_ sample, it is shown that given these conditions, this single sample comes from a distribution defined by $\hat{p} \sim N\left(p, sqrt(\frac{p(1 - p)}{n})\right)$. This is useful, because with this one single sample, we can calculate $\mathrm{SE}$ directly as $\sqrt{\frac{p(1 - p)}{n}}$, and substitute 
+
+If the conditions above do not hold, then a randomization test must be used. <!-- Lock5Stat Ch. 6 p. 368 -->
+
+Randomization distributions
+
+Generate randomization samples that are consistent with the null hypothesis
+
+When to use for the following?
+
+* mean
+* difference in means
+* difference in proportions
+* etc.
