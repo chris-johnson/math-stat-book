@@ -1,21 +1,6 @@
 
 # Sampling
 
-Squid
-
-Experiment: Ensure flow rate is $525 \pm 25$ mL for some number of trials.
-
-Task, stated in many ways: 
-
-Range: [500, 550]
-
-Calculate the number of trials needed to ensure the flow rate $525 \pm 25$
-
-Sample size, 15, 39
-  choice of, 124-129
-  effect on chi-squared statistic, 235
-  effect on width of confidence interval, 114, 133
-
 ## 15
 
 Simple random sample
